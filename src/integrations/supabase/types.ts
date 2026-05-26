@@ -45,7 +45,9 @@ export type Database = {
           id: string
           last_watered_at: string | null
           name: string
-          type: Database["public"]["Enums"]["plant_type"]
+          notes: string | null
+          species: string | null
+          type: Database["public"]["Enums"]["plant_type"] | null
           user_id: string
           watering_frequency_days: number
         }
@@ -55,8 +57,10 @@ export type Database = {
           id?: string
           last_watered_at?: string | null
           name: string
-          type: Database["public"]["Enums"]["plant_type"]
-          user_id: string
+          notes?: string | null
+          species?: string | null
+          type?: Database["public"]["Enums"]["plant_type"] | null
+          user_id?: string
           watering_frequency_days?: number
         }
         Update: {
@@ -65,7 +69,9 @@ export type Database = {
           id?: string
           last_watered_at?: string | null
           name?: string
-          type?: Database["public"]["Enums"]["plant_type"]
+          notes?: string | null
+          species?: string | null
+          type?: Database["public"]["Enums"]["plant_type"] | null
           user_id?: string
           watering_frequency_days?: number
         }
