@@ -14,7 +14,98 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      groups: {
+        Row: {
+          colour: string
+          created_at: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          colour?: string
+          created_at?: string
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          colour?: string
+          created_at?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      plants: {
+        Row: {
+          created_at: string
+          group_id: string | null
+          id: string
+          last_watered_at: string | null
+          name: string
+          type: Database["public"]["Enums"]["plant_type"]
+          user_id: string
+          watering_frequency_days: number
+        }
+        Insert: {
+          created_at?: string
+          group_id?: string | null
+          id?: string
+          last_watered_at?: string | null
+          name: string
+          type: Database["public"]["Enums"]["plant_type"]
+          user_id: string
+          watering_frequency_days?: number
+        }
+        Update: {
+          created_at?: string
+          group_id?: string | null
+          id?: string
+          last_watered_at?: string | null
+          name?: string
+          type?: Database["public"]["Enums"]["plant_type"]
+          user_id?: string
+          watering_frequency_days?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plants_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          location_lat: number | null
+          location_lng: number | null
+          location_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          location_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          location_lat?: number | null
+          location_lng?: number | null
+          location_name?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +114,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      plant_type: "vegetable" | "herb" | "flower" | "shrub"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +241,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      plant_type: ["vegetable", "herb", "flower", "shrub"],
+    },
   },
 } as const
